@@ -3,8 +3,14 @@ import csv
 import os
 import json
 
+print("Welcome! Let's get ready to discover some insights!")
+year = input ("Please type the year in the following format YYYY:")
+month = input ("Please type the month in the following format MM:")
+user_input = "sales-" + year + month + ".csv"
+print ("Your Input Was " + user_input)
 
-r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/sales-201710.csv').read().decode('utf8').split("\n")
+
+r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data'+user_input).read().decode('utf8').split("\n")
 reader = csv.reader(r)
 for line in reader:
     print(line)
@@ -22,8 +28,3 @@ with open(csv_file_path, "r") as csv_file: # "r" means "open the file for readin
         d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
         print(type(d), d["name"], d["price"])
         products.append(d)
-
-    year = input ("Please type the year in the following format YYYY:")
-    month = input ("Please type the month in the following format MM:")
-    user_input = "sales-" + year + month + ".csv"
-    print ("Your Input Was " + user_input)
