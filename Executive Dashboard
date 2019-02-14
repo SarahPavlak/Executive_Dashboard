@@ -7,8 +7,11 @@ import pip
 import plotly as py
 import plotly.graph_objs as go
 
-print("Welcome! Let's get ready to discover some insights!)
+print("-----------------------------------------------------")
+print("Welcome! Let's get ready to discover some insights!")
 print ("please start by adding pip to your terminal")
+print("-----------------------------------------------------")
+
 year = input ("Please type the year in the following format YYYY:")
 month = input ("Please type the month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
