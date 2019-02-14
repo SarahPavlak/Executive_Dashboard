@@ -16,33 +16,14 @@ csv_file_path = os.path.join(os.path.dirname(__file__), "data", csv_filename)
 with open(csv_file_path, "r") as csv_file: # "r" means "open the file for reading"
 
 
-    #reader = csv.DictReader(csv_file) # assuming your CSV has headers
-    #for row in reader:
-        #d = dict(row)
-        #d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
-        #print(type(d), d["name"], d["price"])
-        #products.append(d)
+    reader = csv.DictReader(csv_file) # assuming your CSV has headers
+    for row in reader:
+        d = dict(row)
+        d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
+        print(type(d), d["name"], d["price"])
+        products.append(d)
 
-#while True:
-    #year = input("Please input a csv file year, or 'END' if you do not want a report: ")
-    #month = input ("Please input a csv file month, or 'END' if you do not want a report: ")
-    #user_input = "sales-" + year + month + ".csv"
-    #print (user_input)
-    #if user_input == "END":
-        #print ("-------------------------------------------")
-        #break
-
-    #else:
-        #print("your input was " + user_input)
-        
-        
-        #products.append(int(user_input))
-        
-        #print (products) #from class 
-
-year = input ("Please type the year in the following format YYYY:")
-month = input ("Please type the month in the following format MM:")
-user_input = "sales-" + year + month + ".csv"
-print ("Your Input Was " + user_input)
-
-#connecting to CSV
+    year = input ("Please type the year in the following format YYYY:")
+    month = input ("Please type the month in the following format MM:")
+    user_input = "sales-" + year + month + ".csv"
+    print ("Your Input Was " + user_input)
