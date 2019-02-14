@@ -2,21 +2,25 @@ import urllib.request as request
 import csv
 import os
 import json
+from urllib.parse import urlparse
+import pip 
+import plotly as py
+import plotly.graph_objs as go
 
-print("Welcome! Let's get ready to discover some insights!")
+print("Welcome! Let's get ready to discover some insights!)
+print ("please start by adding pip to your terminal")
 year = input ("Please type the year in the following format YYYY:")
 month = input ("Please type the month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
 print ("Your Input Was " + user_input)
 
-
-r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/sales-201710.csv').read().decode('utf8').split("\n")
+r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n")
 reader = csv.reader(r)
 for line in reader:
     print(line)
 
     #code adapted form: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
-
+    # need to figure out how to parse url with adding in the user input part
 csv_filename = "sales-201803.csv"
 csv_file_path = os.path.join(os.path.dirname(__file__), "data", csv_filename)
 with open(csv_file_path, "r") as csv_file: # "r" means "open the file for reading"
@@ -28,3 +32,5 @@ with open(csv_file_path, "r") as csv_file: # "r" means "open the file for readin
         d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
         print(type(d), d["name"], d["price"])
         products.append(d)
+
+#creating charts 
