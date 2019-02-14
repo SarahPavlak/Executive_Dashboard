@@ -10,7 +10,7 @@ user_input = "sales-" + year + month + ".csv"
 print ("Your Input Was " + user_input)
 
 
-r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data').read().decode('utf8').split("\n")
+r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/sales-201710.csv').read().decode('utf8').split("\n")
 reader = csv.reader(r)
 for line in reader:
     print(line)
