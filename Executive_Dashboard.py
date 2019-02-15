@@ -16,7 +16,7 @@ l=[]
 year = input ("Please type the year in the following format YYYY:")
 month = input ("Please type the month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
-print ("Your Input Was " + user_input)
+print ("Your Input was " + user_input)
 
 def month_lookup(month):
 	month_input={'01':'January','02':'February','03':'March','04':'April',
@@ -37,43 +37,26 @@ if user_input in sales:
         for row in reader:
             d = dict(row)
             d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
-            #print(type(d), d["product"], d["unit price"])
             products.append(d)
-
             if row ["product"] in productrevenue:
                 productrevenue[row["product"]] += float(row["sales price"])
             else: productrevenue[row["product"]] = float(row["sales price"])
 
-        print(productrevenue)
-
-        super_soft_sweater_revenue = 12345
-        super_soft_hoodie_revenue = 12345
-        vintage_logo_tee_revenue = 12345
-        winter_hat_revenue = 12345
-        sticker_pack_revenue = 12345
-        button_down_shirt_revenue = 12345
-        khaki_pants_revenue = 12345
-        brown_boots_revenue = 12345
-
         total = 0
-        total = total + super_soft_sweater_revenue
-        total = total + super_soft_hoodie_revenue
-        total = total + vintage_logo_tee_revenue
-        total = total + winter_hat_revenue
-        total = total + sticker_pack_revenue
-        total = total + button_down_shirt_revenue
-        total = total + khaki_pants_revenue
-        total = total + brown_boots_revenue
+        for keys in productrevenue:
+            print(productrevenue)
+            print(d)
+            total += productrevenue[keys]
       
         bar_data = [
-            {"Product": "Super Soft Sweater", "Revenue USD": super_soft_sweater_revenue},
-            {"Product": "Super Soft Hoodie", "Revenue USD": super_soft_hoodie_revenue},
-            {"Product": "Vintage Logo Tee", "Revenue USD": vintage_logo_tee_revenue},
-            {"Product": "Winter Hat", "Revenue USD": winter_hat_revenue},
-            {"Product": "Sticker Pack", "Revenue USD": sticker_pack_revenue},
-            {"Product": "Button-Down Shirt", "Revenue USD": button_down_shirt_revenue},
-            {"Product": "Khaki Pants", "Revenue USD": khaki_pants_revenue},
-            {"Product": "Brown Boots", "Revenue USD": brown_boots_revenue}
+            {"Product": "Super Soft Sweater", "Revenue USD": productrevenue["Super_Soft_Sweater"]},
+            {"Product": "Super Soft Hoodie", "Revenue USD": productrevenue["Super_Soft_Hoodie"]},
+            {"Product": "Vintage Logo Tee", "Revenue USD": productrevenue["Vintage_Logo_Tee"]},
+            {"Product": "Winter Hat", "Revenue USD": productrevenue["Winter_Hat"]},
+            {"Product": "Sticker Pack", "Revenue USD": productrevenue["Sticker_Pack"]},
+            {"Product": "Button-Down Shirt", "Revenue USD": productrevenue["Button-Down_Shirt"]},
+            {"Product": "Khaki Pants", "Revenue USD": productrevenue["Khaki_Pants"]},
+            {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown_Boots"]}
         ]
 
         print("----------------------------------------")
@@ -81,6 +64,7 @@ if user_input in sales:
         print ("Total Monthly Sales:" + str (price_usd)) 
         print("----------------------------------------")
         print("Top Selling Products:")
+        print(productrevenue)
         print("  1) Button-Down Shirt: $6,960.35") #tofix
         print("  2) Super Soft Hoodie: $1,875.00")
         print("  3) etc.")
