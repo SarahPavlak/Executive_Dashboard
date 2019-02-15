@@ -22,19 +22,17 @@ def month_lookup(month):
 	month_input={'01':'January','02':'February','03':'March','04':'April',
 	'05':'May','06':'June','07':'July','08':'August','09':'September','10':'October',
 	'11':'November', '12':'December'}
-	return month_input[month] #adapted from hiep's github
+	return month_input[month] #month_lookup adapted from hiep's github
 
 sales = [
-    'sales-201710.csv','sales-201711.csv','sales-201712.csv',
+    'sales-201710.csv','sales-201711.csv','sales-201712.csv', 'sales-201801.csv', 'sales-201802.csv', 'sales-201803.csv', 'sales-201804.csv', 'sales-201805.csv', 'sales-201806.csv', 'sales-201807.csv', 'sales-201808.csv', 'sales-201809.csv', 'sales-201810.csv', 'sales-201811.csv', 'sales-201812.csv', 'sales-201901.csv', 'sales-201902.csv', 'sales-201903.csv', 'sales-201904.csv' #finish putting in csvs
 ]
 
-
-if user_input in sales: #finish figuring this out
+if user_input in sales: 
 
         r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n")
         reader = csv.reader(r)
         for line in reader:
-            #print(line)
             print (line)
         #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
         
@@ -69,17 +67,13 @@ if user_input in sales: #finish figuring this out
         ]
 
         print("----------------")
-        print ("                       ")
         price_usd = "${0: .2f}".format(total)
         print ("Total Monthly Sales:" + str (price_usd)) 
-        print ("                       ")
         print("-----------------------")
-        print ("                       ")
         print("Top Selling Products:")
         print("  1) Button-Down Shirt: $6,960.35") #tofix
         print("  2) Super Soft Hoodie: $1,875.00")
         print("  3) etc.")
-        print ("                       ")
         print("-----------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
@@ -98,26 +92,24 @@ if user_input in sales: #finish figuring this out
         figure = go.Figure(data = data,layout=layout)
         py.offline.plot(figure, filename='basic-bar.html', auto_open = True)
 
-        #bar data code adopted from class version
+        #bar data code adapted from class version
 
         csv_filename = "sales-201803.csv"
         csv_file_path = 0
         #csv_file_path = os.path.join(os.path.dirname(__file__), "data", csv_filename) #need to adjust this line to work
-        with open(csv_file_path, "r") as csv_file: # "r" means "open the file for reading"
+        with open(csv_file_path, "r") as csv_file:
 
 
-            reader = csv.DictReader(csv_file) #code adapted from in class set up
+            reader = csv.DictReader(csv_file) #code adapted from class set up
             for row in reader:
                 d = dict(row)
                 d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
                 print(type(d), d["name"], d["price"])
                 products.append(d)
 
-else: print("Oh no!")
+else: print("Oh no! That's not a csv option! The program will now gracefully close.") 
 exit 
-
 
 #still to do: 
     #make top 3 seller part
-    #makes if statement so if it doesnt work you get the oh no error, fail gracefully i.e. avoid runtime errors and exit program
     #have the bar graph express the correct revenues in usd with 2 decimals
