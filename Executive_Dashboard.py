@@ -37,17 +37,14 @@ if user_input in sales:
         for row in reader:
             d = dict(row)
             d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
-            print(type(d), d["product"], d["unit price"])
+            #print(type(d), d["product"], d["unit price"])
             products.append(d)
 
             if row ["product"] in productrevenue:
-                productrevenue[row["product"]] += row["sales price"]
-            else: productrevenue[row["product"]] = row["sales price"]
+                productrevenue[row["product"]] += float(row["sales price"])
+            else: productrevenue[row["product"]] = float(row["sales price"])
 
-            print(productrevenue)
-
-
-    
+        print(productrevenue)
 
         super_soft_sweater_revenue = 12345
         super_soft_hoodie_revenue = 12345
@@ -113,3 +110,4 @@ exit
 #still to do: 
     #make top 3 seller part
     #finish bar graph
+ 
