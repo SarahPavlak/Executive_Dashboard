@@ -17,15 +17,21 @@ month = input ("Please type the month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
 print ("Your Input Was " + user_input)
 
+def month_lookup(month):
+	month_input={'01':'January','02':'February','03':'March','04':'April',
+	'05':'May','06':'June','07':'July','08':'August','09':'September','10':'October',
+	'11':'November', '12':'December'}
+	return month_input[month] #adapted from hiep's github
+
 while True:
-    if user_input == 'sales-201710.csv'or 'sales-201711.csv' or 'sales-201712.csv': 
+    if user_input == 'sales-201710.csv'or 'sales-201711.csv' or 'sales-201712.csv': #finish figuring this out
 
         r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n")
         reader = csv.reader(r)
         for line in reader:
             print(line)
 
-        #code adapted form: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
+        #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
         
         super_soft_sweater_revenue = 12345
         super_soft_hoodie_revenue = 12345
@@ -36,21 +42,31 @@ while True:
         khaki_pants_revenue = 12345
         brown_boots_revenue = 12345
 
+        #total_revenue = sum #to sum totals & make sure its decimal pointed
+
         bar_data = [
-            {"Product": "Super Soft Sweater", "Revenue": super_soft_sweater_revenue},
-            {"Product": "Super Soft Hoodie", "Revenue": super_soft_hoodie_revenue},
-            {"Product": "Vintage Logo Tee", "Revenue": vintage_logo_tee_revenue},
-            {"Product": "Winter Hat", "Revenue": winter_hat_revenue},
-            {"Product": "Sticker Pack", "Revenue": sticker_pack_revenue},
-            {"Product": "Button-Down Shirt", "Revenue": button_down_shirt_revenue},
-            {"Product": "Khaki Pants", "Revenue": khaki_pants_revenue},
-            {"Product": "Brown Boots", "Revenue": brown_boots_revenue}
+            {"Product": "Super Soft Sweater", "Revenue USD": super_soft_sweater_revenue},
+            {"Product": "Super Soft Hoodie", "Revenue USD": super_soft_hoodie_revenue},
+            {"Product": "Vintage Logo Tee", "Revenue USD": vintage_logo_tee_revenue},
+            {"Product": "Winter Hat", "Revenue USD": winter_hat_revenue},
+            {"Product": "Sticker Pack", "Revenue USD": sticker_pack_revenue},
+            {"Product": "Button-Down Shirt", "Revenue USD": button_down_shirt_revenue},
+            {"Product": "Khaki Pants", "Revenue USD": khaki_pants_revenue},
+            {"Product": "Brown Boots", "Revenue USD": brown_boots_revenue}
         ]
 
         print("----------------")
-        print ("Your mothly sales was: ")
-
-
+        print ("                       ")
+        print ("Total Monthly Sales: $")
+        print ("                       ")
+        print("-----------------------")
+        print ("                       ")
+        print("Top Selling Products:")
+        print("  1) Button-Down Shirt: $6,960.35") #tofix
+        print("  2) Super Soft Hoodie: $1,875.00")
+        print("  3) etc.")
+        print ("                       ")
+        print("-----------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
 
@@ -59,12 +75,12 @@ while True:
 
         for i in range(0, len(bar_data)):
             x.append(bar_data[i]['Product'])
-            y.append(bar_data[i]['Revenue'])
+            y.append(bar_data[i]['Revenue USD'])
         data = [go.Bar(
                     x=x,
                     y=y
             )]
-        layout = go.Layout(title='Product Profits ' + str(user_input))
+        layout = go.Layout(title='Product Profits ' + str(month_lookup(month)) + " " + year) #need to fix month part
         figure = go.Figure(data = data,layout=layout)
         py.offline.plot(figure, filename='basic-bar.html', auto_open = True)
 
@@ -84,9 +100,3 @@ while True:
                 products.append(d)
 
     else: print("Oh no!")
-
-
-#still to do: 
-    #tabulate revenues for total monthly sales and express it in dollars
-    #makes if statement so if it doesnt work you get the oh no error
-    #have the bar graph express the correct revenues 
