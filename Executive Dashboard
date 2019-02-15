@@ -9,7 +9,6 @@ import plotly.graph_objs as go
 
 print("-----------------------------------------------------")
 print("Welcome! Let's get ready to discover some insights!")
-print ("please start by adding pip to your terminal")
 print("-----------------------------------------------------")
 
 year = input ("Please type the year in the following format YYYY:")
@@ -17,15 +16,19 @@ month = input ("Please type the month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
 print ("Your Input Was " + user_input)
 
+#input failure if doesnt have right input
+
 r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n")
 reader = csv.reader(r)
 for line in reader:
-    print(line)
+      print(line)
+
+    #to figure out how to add a chart functionality here
 
     #code adapted form: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
-    # need to figure out how to parse url with adding in the user input part
 csv_filename = "sales-201803.csv"
-csv_file_path = os.path.join(os.path.dirname(__file__), "data", csv_filename)
+csv_file_path = 0
+#csv_file_path = os.path.join(os.path.dirname(__file__), "data", csv_filename) #need to adjust this line to work
 with open(csv_file_path, "r") as csv_file: # "r" means "open the file for reading"
 
 
@@ -36,4 +39,7 @@ with open(csv_file_path, "r") as csv_file: # "r" means "open the file for readin
         print(type(d), d["name"], d["price"])
         products.append(d)
 
+
+
 #creating charts 
+
