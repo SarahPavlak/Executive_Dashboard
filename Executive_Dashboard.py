@@ -29,7 +29,7 @@ sales = [
 ]
 
 products = []
-productname = []
+productrevenue = {}
 if user_input in sales: 
 
         r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n") #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
@@ -39,10 +39,16 @@ if user_input in sales:
             d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
             print(type(d), d["product"], d["unit price"])
             products.append(d)
-            productname.append(row["product"])
 
-    list(set(productname))
+            if row ["product"] in productrevenue:
+                productrevenue[row["product"]] += row["sales price"]
+            else: productrevenue[row["product"]] = row["sales price"]
+
+            print(productrevenue)
+
+
     
+
         super_soft_sweater_revenue = 12345
         super_soft_hoodie_revenue = 12345
         vintage_logo_tee_revenue = 12345
@@ -107,4 +113,3 @@ exit
 #still to do: 
     #make top 3 seller part
     #finish bar graph
- 
