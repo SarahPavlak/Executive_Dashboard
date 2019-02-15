@@ -42,8 +42,16 @@ while True:
         khaki_pants_revenue = 12345
         brown_boots_revenue = 12345
 
-        #total_revenue = sum #to sum totals & make sure its decimal pointed
-
+        total = 0
+        total = total + super_soft_sweater_revenue
+        total = total + super_soft_hoodie_revenue
+        total = total + vintage_logo_tee_revenue
+        total = total + winter_hat_revenue
+        total = total + sticker_pack_revenue
+        total = total + button_down_shirt_revenue
+        total = total + khaki_pants_revenue
+        total = total + brown_boots_revenue
+      
         bar_data = [
             {"Product": "Super Soft Sweater", "Revenue USD": super_soft_sweater_revenue},
             {"Product": "Super Soft Hoodie", "Revenue USD": super_soft_hoodie_revenue},
@@ -57,7 +65,7 @@ while True:
 
         print("----------------")
         print ("                       ")
-        print ("Total Monthly Sales: $")
+        print ("Total Monthly Sales: $" + str(total))
         print ("                       ")
         print("-----------------------")
         print ("                       ")
@@ -100,3 +108,10 @@ while True:
                 products.append(d)
 
     else: print("Oh no!")
+
+
+#still to do: 
+    #tabulate revenues for total monthly sales and express it in dollars
+    #make top 3 seller part
+    #makes if statement so if it doesnt work you get the oh no error, fail gracefully i.e. avoid runtime errors and exit program
+    #have the bar graph express the correct revenues in usd with 2 decimals
