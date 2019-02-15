@@ -6,6 +6,7 @@ from urllib.parse import urlparse
 import pip 
 import plotly as py
 import plotly.graph_objs as go
+import pandas
 
 print("-----------------------------------------------------")
 print("Welcome! Let's get ready to discover some insights!")
@@ -23,14 +24,18 @@ def month_lookup(month):
 	'11':'November', '12':'December'}
 	return month_input[month] #adapted from hiep's github
 
-while True:
-    if user_input == 'sales-201710.csv'or 'sales-201711.csv' or 'sales-201712.csv': #finish figuring this out
+sales = [
+    'sales-201710.csv','sales-201711.csv','sales-201712.csv',
+]
+
+
+if user_input in sales: #finish figuring this out
 
         r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n")
         reader = csv.reader(r)
         for line in reader:
-            print(line)
-
+            #print(line)
+            print (line)
         #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
         
         super_soft_sweater_revenue = 12345
@@ -66,7 +71,7 @@ while True:
         print("----------------")
         print ("                       ")
         price_usd = "${0: .2f}".format(total)
-        print ("Total Monthly Sales: " + str (price_usd)) #need to format it to two decimal points
+        print ("Total Monthly Sales:" + str (price_usd)) 
         print ("                       ")
         print("-----------------------")
         print ("                       ")
@@ -89,7 +94,7 @@ while True:
                     x=x,
                     y=y
             )]
-        layout = go.Layout(title='Product Profits ' + str(month_lookup(month)) + " " + year) #need to fix month part
+        layout = go.Layout(title='Product Profits ' + str(month_lookup(month)) + " " + year) 
         figure = go.Figure(data = data,layout=layout)
         py.offline.plot(figure, filename='basic-bar.html', auto_open = True)
 
@@ -108,17 +113,11 @@ while True:
                 print(type(d), d["name"], d["price"])
                 products.append(d)
 
-    else: print("Oh no!")
+else: print("Oh no!")
+exit 
 
 
 #still to do: 
-    #make top 3 seller part
-    #makes if statement so if it doesnt work you get the oh no error, fail gracefully i.e. avoid runtime errors and exit program
-    #have the bar graph express the correct revenues in usd with 2 decimals
-
-
-#still to do: 
-    #tabulate revenues for total monthly sales and express it in dollars
     #make top 3 seller part
     #makes if statement so if it doesnt work you get the oh no error, fail gracefully i.e. avoid runtime errors and exit program
     #have the bar graph express the correct revenues in usd with 2 decimals
