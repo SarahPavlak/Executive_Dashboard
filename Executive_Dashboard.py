@@ -65,7 +65,8 @@ while True:
 
         print("----------------")
         print ("                       ")
-        print ("Total Monthly Sales: $" + str(total))
+        price_usd = "${0: .2f}".format(total)
+        print ("Total Monthly Sales: " + str (price_usd)) #need to format it to two decimal points
         print ("                       ")
         print("-----------------------")
         print ("                       ")
@@ -108,6 +109,12 @@ while True:
                 products.append(d)
 
     else: print("Oh no!")
+
+
+#still to do: 
+    #make top 3 seller part
+    #makes if statement so if it doesnt work you get the oh no error, fail gracefully i.e. avoid runtime errors and exit program
+    #have the bar graph express the correct revenues in usd with 2 decimals
 
 
 #still to do: 
