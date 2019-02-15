@@ -44,8 +44,6 @@ if user_input in sales:
 
         total = 0
         for keys in productrevenue:
-            print(productrevenue)
-            print(d)
             total += productrevenue[keys]
       
         bar_data = [
@@ -94,4 +92,3 @@ exit
 #still to do: 
     #make top 3 seller part
     #finish bar graph
- 
