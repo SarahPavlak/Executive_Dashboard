@@ -90,8 +90,7 @@ if user_input in sales:
             #code learning: https://realpython.com/python-lists-tuples/#python-tuples 
 
         print("-----------------------------------------------------")
-
-        print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
+        print("Generating Bar Chart with Business Insights...")
         
         x = []
         y = []
@@ -105,15 +104,16 @@ if user_input in sales:
             )]
         layout = go.Layout(title='Product Profits ' + str(month_lookup(month)) + " " + year,
             xaxis = dict(title="Item"),
-            yaxis = dict(title="Sales (USD)"),
+            yaxis = dict(title="Sales (USD)"), #source: https://github.com/s2t2/exec-dash-starter-py/blob/master/monthly_sales.py 
+            margin= go.layout.Margin(l=150, pad=8) #source: https://github.com/s2t2/exec-dash-starter-py/blob/master/monthly_sales.py 
             )
         figure = go.Figure(data = data,layout=layout)
         py.offline.plot(figure, filename='basic-bar.html', auto_open = True)
         #bar data code adapted from madeline's shared class version
+        #note: couldnt figure out how to get bar chart axis to go to 2nd decimal place
 
 else: print("Oh no! That's not a csv option! The program will now gracefully close.") 
 exit 
 
-#still to do: 
-    # fix to float 2 decimal places
+ 
  
