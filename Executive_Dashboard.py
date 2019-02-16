@@ -113,7 +113,7 @@ if user_input in sales:
         #note: couldnt figure out how to get bar chart axis to go to 2nd decimal place
 
 else: print("Oh no! That's not a csv option! The program will now gracefully close.") 
-exit 
+exit  
 
  
  
