@@ -16,7 +16,7 @@ l=[]
 year = input ("Please type the year in the following format YYYY:")
 month = input ("Please type the month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
-print ("Your Input was " + user_input)
+#print ("Your Input was " + user_input)
 
 def month_lookup(month):
 	month_input={'01':'January','02':'February','03':'March','04':'April',
@@ -70,21 +70,21 @@ if user_input in sales:
         for products in sorted(productrevenue, key=productrevenue.get, reverse = True):
             productsbysales.append((products,productrevenue[products]))
 
-            #code adapted from: https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value 
+            #code adapted from: https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value
+            # code reverse true: https://stackoverflow.com/questions/17295060/sort-the-top-ten-results 
 
 
-        print("----------------------------------------")
+        print("-----------------------------------------------------")
         price_usd = "${0: .2f}".format(total)
         print ("Total Monthly Sales:" + str (price_usd)) 
-        print ("Sales Breakdown: ")
-        print(productrevenue)
-        print("----------------------------------------")
+        print("-----------------------------------------------------")
         print("Top Selling Products:")
         print("1) " + productsbysales[0][0], productsbysales[0][1])
         print("2) " +productsbysales[1][0],productsbysales[1][1])
         print("3) " +productsbysales [2][0], productsbysales [2][1])
     
-        print("----------------------------------------")
+            #code learning: https://realpython.com/python-lists-tuples/#python-tuples 
+        print("-----------------------------------------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
 
@@ -109,6 +109,7 @@ exit
 
 #still to do: 
     #make top 3 seller part
+ 
  
  
    
