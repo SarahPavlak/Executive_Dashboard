@@ -35,6 +35,8 @@ productrevenue = {"Super Soft Sweater" : 0,
     "Sticker Pack": 0,
     "Button-Down Shirt": 0,
     "Khaki Pants": 0,
+    "Swim Trunks": 0,
+    "Baseball Cap": 0,
     "Brown Boots": 0}
 
 if user_input in sales: 
@@ -63,7 +65,8 @@ if user_input in sales:
             {"Product": "Button-Down Shirt", "Revenue USD": productrevenue["Button-Down Shirt"]},
             {"Product": "Khaki Pants", "Revenue USD": productrevenue["Khaki Pants"]},
             {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown Boots"]},
-            {"Product": "Swim Trunks", "Revenue USD": productrevenue["Swim Trunks"]}
+            {"Product": "Swim Trunks", "Revenue USD": productrevenue["Swim Trunks"]},
+            {"Product": "Baseball Cap", "Revenue USD": productrevenue["Baseball Cap"]}
         ]
 
         productsbysales = []
@@ -84,6 +87,7 @@ if user_input in sales:
         print("3) " +productsbysales [2][0] + " $" + str(productsbysales [2][1]))
     
             #code learning: https://realpython.com/python-lists-tuples/#python-tuples 
+
         print("-----------------------------------------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
@@ -104,11 +108,12 @@ if user_input in sales:
             )
         figure = go.Figure(data = data,layout=layout)
         py.offline.plot(figure, filename='basic-bar.html', auto_open = True)
-
-        #bar data code adapted from class version
+        #bar data code adapted from madeline's shared class version
 
 else: print("Oh no! That's not a csv option! The program will now gracefully close.") 
 exit 
 
 #still to do: 
-    #format bar chart, fix to float 2 decimal places, check didnt miss more items
+    # fix to float 2 decimal places
+ 
+ 
