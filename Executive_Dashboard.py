@@ -29,7 +29,15 @@ sales = [
 ]
 
 products = []
-productrevenue = {}
+productrevenue = {"Super Soft Sweater" : 0.0,
+    "Super Soft Hoodie" : 0.0, 
+    "Vintage Logo Tee": 0.0,
+    "Winter Hat": 0.0,
+    "Sticker Pack": 0.0,
+    "Button-Down Shirt": 0.0,
+    "Khaki Pants": 0.0,
+    "Brown Boots": 0.0 }
+
 if user_input in sales: 
 
         r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n") #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
@@ -47,14 +55,14 @@ if user_input in sales:
             total += productrevenue[keys]
       
         bar_data = [
-            {"Product": "Super Soft Sweater", "Revenue USD": productrevenue["Super_Soft_Sweater"]},
-            {"Product": "Super Soft Hoodie", "Revenue USD": productrevenue["Super_Soft_Hoodie"]},
-            {"Product": "Vintage Logo Tee", "Revenue USD": productrevenue["Vintage_Logo_Tee"]},
-            {"Product": "Winter Hat", "Revenue USD": productrevenue["Winter_Hat"]},
-            {"Product": "Sticker Pack", "Revenue USD": productrevenue["Sticker_Pack"]},
-            {"Product": "Button-Down Shirt", "Revenue USD": productrevenue["Button-Down_Shirt"]},
-            {"Product": "Khaki Pants", "Revenue USD": productrevenue["Khaki_Pants"]},
-            {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown_Boots"]}
+            {"Product": "Super Soft Sweater", "Revenue USD": productrevenue["Super Soft Sweater"]},
+            {"Product": "Super Soft Hoodie", "Revenue USD": productrevenue["Super Soft Hoodie"]},
+            {"Product": "Vintage Logo Tee", "Revenue USD": productrevenue["Vintage Logo Tee"]},
+            {"Product": "Winter Hat", "Revenue USD": productrevenue["Winter Hat"]},
+            {"Product": "Sticker Pack", "Revenue USD": productrevenue["Sticker Pack"]},
+            {"Product": "Button-Down Shirt", "Revenue USD": productrevenue["Button-Down Shirt"]},
+            {"Product": "Khaki Pants", "Revenue USD": productrevenue["Khaki Pants"]},
+            {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown Boots"]}
         ]
 
         print("----------------------------------------")
@@ -63,9 +71,6 @@ if user_input in sales:
         print("----------------------------------------")
         print("Top Selling Products:")
         print(productrevenue)
-        print("  1) Button-Down Shirt: $6,960.35") #tofix
-        print("  2) Super Soft Hoodie: $1,875.00")
-        print("  3) etc.")
         print("----------------------------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
@@ -91,4 +96,4 @@ exit
 
 #still to do: 
     #make top 3 seller part
-    #finish bar graph
+   
