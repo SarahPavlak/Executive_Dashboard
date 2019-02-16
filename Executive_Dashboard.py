@@ -62,7 +62,8 @@ if user_input in sales:
             {"Product": "Sticker Pack", "Revenue USD": productrevenue["Sticker Pack"]},
             {"Product": "Button-Down Shirt", "Revenue USD": productrevenue["Button-Down Shirt"]},
             {"Product": "Khaki Pants", "Revenue USD": productrevenue["Khaki Pants"]},
-            {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown Boots"]}
+            {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown Boots"]},
+            {"Product": "Swim Trunks", "Revenue USD": productrevenue["Swim Trunks"]}
         ]
 
         productsbysales = []
@@ -86,7 +87,7 @@ if user_input in sales:
         print("-----------------------------------------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
-
+        
         x = []
         y = []
 
@@ -97,7 +98,10 @@ if user_input in sales:
                     x=x,
                     y=y
             )]
-        layout = go.Layout(title='Product Profits ' + str(month_lookup(month)) + " " + year) 
+        layout = go.Layout(title='Product Profits ' + str(month_lookup(month)) + " " + year,
+            xaxis = dict(title="Item"),
+            yaxis = dict(title="Sales (USD)"),
+            )
         figure = go.Figure(data = data,layout=layout)
         py.offline.plot(figure, filename='basic-bar.html', auto_open = True)
 
@@ -107,8 +111,4 @@ else: print("Oh no! That's not a csv option! The program will now gracefully clo
 exit 
 
 #still to do: 
-    #format bar chart, add axis, fix to float 2 decimal places
- 
- 
- 
-   
+    #format bar chart, fix to float 2 decimal places, check didnt miss more items
