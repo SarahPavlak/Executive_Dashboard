@@ -8,15 +8,14 @@ import plotly as py
 import plotly.graph_objs as go
 import pandas
 
-print("-----------------------------------------------------")
-print("Welcome! Let's get ready to discover some insights!")
-print("-----------------------------------------------------")
+print("--------------------------------------------------------------------------------")
+print("Welcome! Let's get ready to discover some business insights courtesy of Sarah!")
+print("--------------------------------------------------------------------------------")
 
 l=[]
-year = input ("Please type the year in the following format YYYY:")
-month = input ("Please type the month in the following format MM:")
+year = input ("Please type the csv year in the following format YYYY:")
+month = input ("Please type the csv month in the following format MM:")
 user_input = "sales-" + year + month + ".csv"
-#print ("Your Input was " + user_input)
 
 def month_lookup(month):
 	month_input={'01':'January','02':'February','03':'March','04':'April',
@@ -71,17 +70,17 @@ if user_input in sales:
             productsbysales.append((products,productrevenue[products]))
 
             #code adapted from: https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value
-            # code reverse true: https://stackoverflow.com/questions/17295060/sort-the-top-ten-results 
+            #code reverse true: https://stackoverflow.com/questions/17295060/sort-the-top-ten-results 
 
 
         print("-----------------------------------------------------")
-        price_usd = "${0: .2f}".format(total)
-        print ("Total Monthly Sales:" + str (price_usd)) 
+        price_usd = "{0: .2f}".format(total)
+        print ("Total Monthly Sales: " + "$" + str(price_usd)) 
         print("-----------------------------------------------------")
-        print("Top Selling Products:")
-        print("1) " + productsbysales[0][0], productsbysales[0][1])
-        print("2) " +productsbysales[1][0],productsbysales[1][1])
-        print("3) " +productsbysales [2][0], productsbysales [2][1])
+        print("Top Selling Products: ")
+        print("1) " + productsbysales[0][0] + " $" + str(productsbysales[0][1]))
+        print("2) " +productsbysales[1][0] + " $" + str(productsbysales[1][1]))
+        print("3) " +productsbysales [2][0] + " $" + str(productsbysales [2][1]))
     
             #code learning: https://realpython.com/python-lists-tuples/#python-tuples 
         print("-----------------------------------------------------")
@@ -108,7 +107,7 @@ else: print("Oh no! That's not a csv option! The program will now gracefully clo
 exit 
 
 #still to do: 
-    #make top 3 seller part
+    #format bar chart, add axis, fix to float 2 decimal places
  
  
  
