@@ -29,23 +29,24 @@ sales = [
 ]
 
 products = []
-productrevenue = {"Super Soft Sweater" : 0.0,
-    "Super Soft Hoodie" : 0.0, 
-    "Vintage Logo Tee": 0.0,
-    "Winter Hat": 0.0,
-    "Sticker Pack": 0.0,
-    "Button-Down Shirt": 0.0,
-    "Khaki Pants": 0.0,
-    "Brown Boots": 0.0 }
+productrevenue = {"Super Soft Sweater" : 0,
+    "Super Soft Hoodie" : 0, 
+    "Vintage Logo Tee": 0,
+    "Winter Hat": 0,
+    "Sticker Pack": 0,
+    "Button-Down Shirt": 0,
+    "Khaki Pants": 0,
+    "Brown Boots": 0}
 
 if user_input in sales: 
 
-        r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n") #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
-        reader = csv.DictReader(r) #code adapted from class set up
+        r = request.urlopen('https://raw.githubusercontent.com/SarahPavlak/Executive_Dashboard/master/data/' + str(user_input)).read().decode('utf8').split("\n") 
+        reader = csv.DictReader(r) 
+        #above r code adapted from: https://stackoverflow.com/questions/51351804/extract-csv-file-from-github-library-with-python
         for row in reader:
             d = dict(row)
             d = {"date": row["date"], "product": row["product"], "unit price": float(row["unit price"]), "units sold": row["units sold"], "sales price": row["sales price"]}
-            products.append(d)
+            products.append(d) #code adapted from class set up
             if row ["product"] in productrevenue:
                 productrevenue[row["product"]] += float(row["sales price"])
             else: productrevenue[row["product"]] = float(row["sales price"])
@@ -65,12 +66,24 @@ if user_input in sales:
             {"Product": "Brown Boots", "Revenue USD": productrevenue["Brown Boots"]}
         ]
 
+        productsbysales = []
+        for products in sorted(productrevenue, key=productrevenue.get, reverse = True):
+            productsbysales.append((products,productrevenue[products]))
+
+            #code adapted from: https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value 
+
+
         print("----------------------------------------")
         price_usd = "${0: .2f}".format(total)
         print ("Total Monthly Sales:" + str (price_usd)) 
+        print ("Sales Breakdown: ")
+        print(productrevenue)
         print("----------------------------------------")
         print("Top Selling Products:")
-        print(productrevenue)
+        print("1) " + productsbysales[0][0], productsbysales[0][1])
+        print("2) " +productsbysales[1][0],productsbysales[1][1])
+        print("3) " +productsbysales [2][0], productsbysales [2][1])
+    
         print("----------------------------------------")
 
         print("GENERATING BAR CHART WITH BUSINESS INSIGHTS...")
@@ -96,4 +109,6 @@ exit
 
 #still to do: 
     #make top 3 seller part
+ 
+ 
    
