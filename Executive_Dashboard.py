@@ -1,9 +1,7 @@
 import urllib.request as request
 import csv
 import os
-import json
 from urllib.parse import urlparse
-import pip 
 import plotly as py
 import plotly.graph_objs as go
 import pandas
@@ -79,12 +77,15 @@ if user_input in sales:
 
         print("-----------------------------------------------------")
         price_usd = "{0: .2f}".format(total)
+        top_product = "{0: .2f}".format((productsbysales[0][1]))
+        second_product = "{0: .2f}".format((productsbysales[1][1]))
+        third_product = "{0: .2f}".format((productsbysales[2][1]))
         print ("Total Monthly Sales: " + "$" + str(price_usd)) 
         print("-----------------------------------------------------")
         print("Top Selling Products: ")
-        print("1) " + productsbysales[0][0] + " $" + str(productsbysales[0][1]))
-        print("2) " +productsbysales[1][0] + " $" + str(productsbysales[1][1]))
-        print("3) " +productsbysales [2][0] + " $" + str(productsbysales [2][1]))
+        print("1) " + productsbysales[0][0] + " $" + str(top_product))
+        print("2) " +productsbysales[1][0] + " $" + str(second_product))
+        print("3) " +productsbysales [2][0] + " $" + str(third_product))
     
             #code learning: https://realpython.com/python-lists-tuples/#python-tuples 
 
@@ -115,5 +116,4 @@ exit
 
 #still to do: 
     # fix to float 2 decimal places
- 
  
